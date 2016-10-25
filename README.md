@@ -1,4 +1,5 @@
-# Trabalho de Conclusão de Curso - SENAI --- Ronaldo - Marco
+# Trabalho de Conclusão de Curso - SENAI
+** Ronaldo - Marco
 
 The OpenShift `jbossas` cartridge documentation can be found at:
 
