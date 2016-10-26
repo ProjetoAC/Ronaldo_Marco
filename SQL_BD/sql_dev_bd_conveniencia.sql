@@ -92,8 +92,13 @@ CREATE TABLE PRODUTO (
 							DTALTERACAO			TIMESTAMP NOT NULL DEFAULT NOW()
 					  );
 
-INSERT INTO PRODUTO( IDPRODUTO, DESCRICAO, PRECONORMAL, PRECOPROMO ) VALUES
-(1, 'Cachorro Quente', 3, 2.5);
+INSERT INTO PRODUTO( IDPRODUTO, DESCRICAO, PRECONORMAL ) VALUES
+(1, 'Cachorro Quente', 3.5),
+(2, 'Assado - Frango', 3.5),
+(3, 'Assado - Carne', 3.5),
+(4, 'Assado - Presunto e Queijo', 3.5),
+(5, 'Café', 1.5),
+(6, 'Todinho', 2);
 
 ---------------------------------------------------------------------------------------------------------------------------
 
@@ -117,7 +122,7 @@ CREATE TABLE ESTOQUE (
 COMMIT;
 
 INSERT INTO ESTOQUE (IDESTOQUE, IDPRODUTO, TIPOOPERACAO, QUANTIDADE, VALORUN, VALORTOT) VALUES
-(1, 1, 'V', 2, 3, 3);
+(1, 1, 'V', 2, 3.5, 7);
 
 ---------------------------------------------------------------------------------------------------------------------------
 
@@ -140,9 +145,11 @@ COMMIT;
 -- DROP TABLE VENDA;
 CREATE TABLE VENDA (
 							IDVENDA				INTEGER PRIMARY KEY,
+							NUMPEDIDO			INTEGER NOT NULL,
 							FLAGCANCELADA		CHAR(1) NOT NULL DEFAULT 'F',
 							IDCLIENTE			INTEGER NOT NULL DEFAULT 0,
 							IDPRODUTO			INTEGER NOT NULL,
+							QUANTIDADE			DECIMAL NOT NULL,
 							VALORVENDALIQ		DECIMAL NOT NULL,
 							TIPOOPERACAO		CHAR(1) NOT NULL DEFAULT '',
 							IDENDERECOENTREGA	INTEGER NOT NULL DEFAULT 0,
@@ -151,6 +158,10 @@ CREATE TABLE VENDA (
                             CONSTRAINT ESTOQUE_IDPRODUTO FOREIGN KEY (IDPRODUTO) REFERENCES PRODUTO (IDPRODUTO)
 					  );
 COMMIT;
+
+INSERT INTO VENDA (IDVENDA, NUMPEDIDO, QUANTIDADE, IDPRODUTO, VALORVENDALIQ) VALUES
+(1, 1, 1, 1, 3.5),
+(2, 1, 1, 2, 3.5);
 
 ---------------------------------------------------------------------------------------------------------------------------
 
